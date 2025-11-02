@@ -11,6 +11,7 @@ router.register(r'accounts', BankAccountViewSet, basename='bankaccount')
 router.register(r'transactions', TransactionViewSet, basename='transaction')
 
 
+
 urlpatterns = [
     path('', include(router.urls)),
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),

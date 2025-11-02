@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 from django.conf import settings
 import uuid
 
@@ -18,29 +19,43 @@ class BankAccount(models.Model):
     def __str__(self):
         return f"{self.user.username} - {self.account_type} - {self.account_number}"
 
+# Transaction model
 class Transaction(models.Model):
-    TRANSACTION_TYPES = [ ('deposit', 'Dépôt'), ('withdrawal', 'Retrait'), ('transfer', 'Virement') ]
-    
-    bank_account = models.ForeignKey(BankAccount, on_delete=models.CASCADE, related_name='transactions')
+    TRANSACTION_TYPES = [
+        ('deposit', 'Dépôt'),
+        ('withdrawal', 'Retrait'),
+        ('transfer', 'Virement'),
+    ]
+
+    bank_account = models.ForeignKey(
+        'BankAccount',
+        on_delete=models.CASCADE,
+        related_name='transactions'
+    )
     transaction_type = models.CharField(max_length=10, choices=TRANSACTION_TYPES)
     amount = models.DecimalField(max_digits=12, decimal_places=2)
+    destinnation_account_number = models.CharField(max_length=20, blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     description = models.TextField(blank=True, null=True)
-    
-    def save(self, *args, **kwargs):
+
+    def clean(self):
         if self.amount <= 0:
-            raise ValueError("Transaction amount must be positive.")
-        # Update bank account balance based on transaction type
+            raise ValidationError("Le montant doit être strictement positif.")
+
+        if self.transaction_type in ['withdrawal', 'transfer']:
+            if self.bank_account.balance < self.amount:
+                raise ValidationError("Fonds insuffisants pour cette opération.")
+
+    def save(self, *args, **kwargs):
+        self.full_clean()  # Appelle clean() pour valider avant sauvegarde
+
         if self.transaction_type == 'deposit':
             self.bank_account.balance += self.amount
-        elif self.transaction_type == 'withdrawal':
+        elif self.transaction_type in ['withdrawal', 'transfer']:
             self.bank_account.balance -= self.amount
-        elif self.transaction_type == 'transfer':
-            # For simplicity, assume transfer is treated as a withdrawal here
-            self.bank_account.balance -= self.amount
-        
+
         self.bank_account.save()
         super().save(*args, **kwargs)
-    
+
     def __str__(self):
-        return f"{self.transaction_type} of {self.amount} on {self.bank_account.account_number} at {self.timestamp}"
+        return f"{self.transaction_type} de {self.amount}€ sur {self.bank_account.account_number} à {self.destinnation_account_number} le {self.timestamp.strftime('%d/%m/%Y %H:%M')}"
