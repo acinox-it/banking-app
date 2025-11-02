@@ -1,41 +1,23 @@
-# 🏦 Banking App
+# 🏦 BANKING-APP
 
-Une application bancaire full-stack sécurisée, développée avec **Django REST Framework (DRF)**, **React + TailwindCSS**, et **MySQL**.  
-Elle permet aux utilisateurs de créer un compte, d'effectuer des transactions et de consulter leur solde en toute sécurité.
-
----
-
-## 🚀 Stack technique
-
-### 🖥️ Backend (`/backend`)
-- **Django 5 + Django REST Framework**
-- **JWT Authentication (SimpleJWT)**
-- **MySQL** comme base de données
-- **python-decouple** pour la gestion du `.env`
-- **Gunicorn + Nginx** pour la production
-- **Docker** pour la conteneurisation
-
-### 💻 Frontend (`/frontend`)
-- **React 18 + Vite**
-- **TailwindCSS** pour le design rapide et responsive
-- **Axios** pour les appels API
-- **React Router** pour la navigation
+A full-stack banking application built with **Django**, **React**, **MySQL**, and **Docker**. It supports secure user authentication, account management, and money transfers via a clean and responsive interface.
 
 ---
 
-## ⚙️ Fonctionnalités principales
+## 🚀 Technologies
 
-- 🔐 Authentification sécurisée par **JWT**
-- 👤 Gestion des utilisateurs (inscription, login, profil)
-- 💸 Gestion des comptes bancaires (solde, historique, virements)
-- 📊 Tableau de bord moderne et responsive
-- 🐳 Environnement **Docker** complet prêt pour la prod
+- **Backend**: Django 5.2 + Django REST Framework + JWT
+- **Frontend**: React + Tailwind CSS
+- **Database**: MySQL 8
+- **Deployment**: Docker Compose + Nginx + Gunicorn
+- **Authentication**: JWT (access/refresh tokens)
 
 ---
 
-## 🧰 Installation locale (dev)
+## ⚙️ Setup Instructions
 
-### 1️⃣ Cloner le dépôt
+### 1. Clone the repository
+
 ```bash
-git clone https://github.com/<ton-username>/banking-app.git
+git clone https://github.com/yourusername/banking-app.git
 cd banking-app
