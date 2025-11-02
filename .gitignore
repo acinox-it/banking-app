@@ -1,0 +1,73 @@
+# Python environment
+venv/
+env/
+*.pyc
+__pycache__/
+
+# Configuration files
+*.env
+*.sqlite3
+db.sqlite3
+
+# Django-specific files
+*.log
+*.pot
+*.py[cod]
+*.so
+*.mo
+*.swp
+*.swo
+*.bak
+*.tmp
+*.orig
+*.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.pytest_cache/
+.django_cache/
+staticfiles/
+media/
+local_settings.py
+
+# Django migrations
+**/migrations/
+**/migrations/*.py
+**/migrations/*.pyc
+
+# IDE/editor settings
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Node.js (React frontend)
+node_modules/
+build/
+dist/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# React-specific files
+/node_modules
+/.pnp
+.pnp.js
+
+# Testing output
+/coverage
+
+# Production build
+/build
+
+# Miscellaneous
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
