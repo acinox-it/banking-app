@@ -1,8 +1,7 @@
 // src/axiosInstance.js
 import axios from 'axios';
 
-const baseURL = 'http://localhost:8000'; // adapte si ton backend est ailleurs
-
+const baseURL = 'http://localhost:8000'; // django backend URL
 const axiosInstance = axios.create({
   baseURL: baseURL,
   timeout: 5000,
