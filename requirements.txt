@@ -1,0 +1,8 @@
+Django                  # Framework web pour Python
+djangorestframework     # Framework pour construire des APIs RESTful
+psycopg2-binary         # Adaptateur PostgreSQL pour Python
+djangorestframework-simplejwt # Pour l'authentification JWT
+django-cors-headers     # Pour gérer les CORS
+python-dotenv           # Pour gérer les variables d'environnement
+gunicorn                # Serveur WSGI pour la prod
+whitenoise              # Pour servir les fichiers statiques
