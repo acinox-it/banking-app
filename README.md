@@ -19,5 +19,48 @@ A full-stack banking application built with **Django**, **React**, **MySQL**, an
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/banking-app.git
+git clone https://github.com/acinox-it/banking-app.git
 cd banking-app
+```
+### 2. Configure environment variables 
+
+Create a **.env** file in the root directory:
+````markdown
+DJANGO_SECRET_KEY=your_secret_key
+DB_HOST=localhost
+DB_USER=root
+DB_PASS=yourpassword
+DB_NAME=banking_db
+JWT_SECRET=your_jwt_secret
+````
+### 3. Backend setup (Django)
+
+```bash
+cd backend
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+```
+
+### 4. Frontend setup (React)
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+---
+
+## ✅ Features
+
+- Secure user authentication (JWT)
+- Account creation and management
+- Money transfers between accounts
+- Transaction history
+- Responsive dashboard with React + Tailwind
+
+---
+
+## 📄 License
+
+Free to use for educational and personal projects.
